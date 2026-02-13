@@ -10,9 +10,13 @@ btnGenerate.addEventListener("click", () => {
 
   //Configuração do arquivo final de PDF
   const options = {
-    margin: [10, 10, 10, 10],
+    margin: 10,
     filename: "conta_prefeitura.pdf",
-    html2canvas: { scale: 2 },
+    html2canvas: {
+      scale: 4,
+      useCORS: true,
+      backgroundColor: "#ffffff"
+    },
     jsPDF: { unit: "mm", format: "a4", orientation: "portrait" }
   }
 
