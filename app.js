@@ -140,15 +140,17 @@ const add = (
 
   btnDuplicar.addEventListener("click", () => {
 
+    linhaEditando = linha;
+
     add(
       colQtd.textContent,
       colDesc.textContent,
       colEvento.textContent,
       colData.textContent,
       spanValor.textContent
-    )
+    );
 
-  })
+  });
 
   /* ===== BOTÃO EXCLUIR ===== */
 
@@ -174,7 +176,12 @@ const add = (
 
   linha.append(colQtd, colDesc, colEvento, colData, colValor)
 
-  tabela.appendChild(linha)
+  if (linhaEditando) {
+    linhaEditando.insertAdjacentElement("afterend", linha);
+    linhaEditando = null;
+  } else {
+    tabela.appendChild(linha);
+  }
 
   /* =========================
      FINALIZAÇÃO
