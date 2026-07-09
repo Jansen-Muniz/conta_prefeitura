@@ -127,7 +127,7 @@ const add = (
         .replace(/\./g, "")
         .replace(",", ".")
 
-    linhaEdicao = linha
+    linhaEdicao = linha.nextElementSibling
 
     linha.remove()
     atualizarTotal()
@@ -180,7 +180,7 @@ const add = (
   linha.append(colQtd, colDesc, colEvento, colData, colValor)
 
   if (linhaEdicao) {
-    linhaEdicao.insertAdjacentElement("afterend", linha);
+    tabela.insertBefore(linha, linhaEdicao);
     linhaEdicao = null;
 
   } else if (linhaDuplicar) {
