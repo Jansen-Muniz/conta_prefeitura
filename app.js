@@ -18,7 +18,14 @@ btnGenerate.addEventListener("click", () => {
       useCORS: true,
       backgroundColor: "#ffffff"
     },
-    jsPDF: { unit: "mm", format: "a4", orientation: "portrait" }
+    jsPDF: {
+      unit: "mm",
+      format: "a4",
+      orientation: "portrait"
+    },
+    pagebreak: {
+      mode: ["avoid-all", "css", "legacy"]
+    }
   }
 
   let elementos = document.querySelectorAll(".no-print")
