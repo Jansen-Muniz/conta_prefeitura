@@ -62,8 +62,11 @@ const add = (
      FORMATAR VALOR
   ========================= */
 
-  valor = valor.replace(",", ".")
-  let numero = parseFloat(valor) || 0
+  let numero = parseFloat(
+    valor
+      .replace(/\./g, "")
+      .replace(",", ".")
+  ) || 0;
 
   let valorFormatado = numero.toLocaleString("pt-BR", {
     minimumFractionDigits: 2,
@@ -119,7 +122,9 @@ const add = (
     document.getElementById("data").value = `${ano}-${mes}-${dia}`
 
     document.getElementById("valor").value =
-      spanValor.textContent.replace(".", "").replace(",", ".")
+      spanValor.textContent
+        .replace(/\./g, "")
+        .replace(",", ".");
 
     linha.remove()
     atualizarTotal()
