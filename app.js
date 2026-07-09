@@ -2,7 +2,8 @@ const btnGenerate = document.querySelector("#generate-pdf")
 const infosTabela = document.getElementById("infos-tabela")
 const btnLimpar = document.querySelector("#btnLimpar")
 
-let linhaEditando = null
+let linhaDuplicar = null
+let linhaEdicao = null
 
 btnGenerate.addEventListener("click", () => {
   //Conteúdo do PDF
@@ -124,7 +125,9 @@ const add = (
     document.getElementById("valor").value =
       spanValor.textContent
         .replace(/\./g, "")
-        .replace(",", ".");
+        .replace(",", ".")
+
+    linhaEdicao = linha
 
     linha.remove()
     atualizarTotal()
@@ -140,7 +143,7 @@ const add = (
 
   btnDuplicar.addEventListener("click", () => {
 
-    linhaEditando = linha;
+    linhaDuplicar = linha
 
     add(
       colQtd.textContent,
@@ -176,9 +179,14 @@ const add = (
 
   linha.append(colQtd, colDesc, colEvento, colData, colValor)
 
-  if (linhaEditando) {
-    linhaEditando.insertAdjacentElement("afterend", linha);
-    linhaEditando = null;
+  if (linhaEdicao) {
+    linhaEdicao.insertAdjacentElement("afterend", linha);
+    linhaEdicao = null;
+
+  } else if (linhaDuplicar) {
+    linhaDuplicar.insertAdjacentElement("afterend", linha);
+    linhaDuplicar = null;
+
   } else {
     tabela.appendChild(linha);
   }
